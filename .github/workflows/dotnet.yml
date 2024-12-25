@@ -26,8 +26,17 @@ jobs:
       run: dotnet build --no-restore
     -  name: Test
        run: dotnet test --no-restore --verbosity normal
-    - name: Publish Test Summary Results
-      run: npx github-actions-ctrf ctrf/ctrf-report.json
+       
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v4
+      if: always()
+      with:
+        files: |
+         test-results/**/*.xml
+         test-results/**/*.trx
+         test-results/**/*.json
+    
+   
     
  
    
