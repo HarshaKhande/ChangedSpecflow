@@ -32,7 +32,7 @@ jobs:
       if: always()
       with:
         files: |
-         bin/Debug/net6.0/TestExecution.json
+         bin/**/**/TestExecution.json
          
    
     
