@@ -24,11 +24,8 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    -name: Test
-      run:dotnet test --no-restore --verbosity normal
-    - name:Test
+    - name: Test
       run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
-
     - name: Test Report
       uses: dorny/test-reporter@v1
       if: always()
@@ -37,6 +34,8 @@ jobs:
         path: "**/test-results.trx"                            
         reporter: dotnet-trx
         fail-on-error: true
+    -  name: Test
+       run: dotnet test --no-restore --verbosity normal
     
  
    
